@@ -31,16 +31,16 @@ class Playlist {
 
     init(label l:String){
         self.label=l
-        var truck1=Track(label: "One")
-        tracks.append(truck1)
-        var truck2=Track(label: "Two")
-        tracks.append(truck2)
-        var truck3=Track(label: "Three")
-        tracks.append(truck3)
-        var truck4=Track(label: "Four")
-        tracks.append(truck4)
-        var truck5=Track(label: "Five")
-        tracks.append(truck5)
+        let track1=Track(label: "One")
+        tracks.append(track1)
+        let track2=Track(label: "Two")
+        tracks.append(track2)
+        let track3=Track(label: "Three")
+        tracks.append(track3)
+        let track4=Track(label: "Four")
+        tracks.append(track4)
+        let track5=Track(label: "Five")
+        tracks.append(track5)
     }
     
     func getTracks() -> [Track]{

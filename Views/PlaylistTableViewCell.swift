@@ -12,10 +12,14 @@ class PlaylistTableViewCell: UITableViewCell, UITextFieldDelegate  {
 
     @IBOutlet weak var label: UITextField!
     var playL:Playlist?
+    var table:UITableView?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.label.delegate = self
+        
+//        NotificationCenter.default.addObserver(self, selector: Selector(("keyboardWillShow:")), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: Selector(("keyboardWillHide:")), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
     
@@ -33,5 +37,10 @@ class PlaylistTableViewCell: UITableViewCell, UITextFieldDelegate  {
         return false
     }
     
-    
+//    //Keyboard functions
+//    func keyboardWillShow(sender: NSNotification) {
+//        //        self.view.frame.origin.y = -150 // Move view 150 points upward
+//        print("Hi")
+//    }
+
 }
