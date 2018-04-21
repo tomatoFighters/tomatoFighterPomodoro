@@ -21,9 +21,8 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
-        
+   
         let cellReuseIdentifier = "cell"
-        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
@@ -62,12 +61,8 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
         if editingStyle == .delete {
             playLists.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            
-        } else if editingStyle == .insert {
-            // Not used in our example, but if you were adding a new row, this is where you would do it.
         }
     }
-
     // Navigation: passing Data to Trucks page
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
