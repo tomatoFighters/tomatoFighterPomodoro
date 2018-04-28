@@ -9,7 +9,7 @@
 import UIKit
 
 class TimerViewController: UIViewController {
-    var Tracks: [Playlist.Track]?
+    var Tracks: [Playlist.Track]!
     
     @IBOutlet weak var timerLabel: UILabel!
     
@@ -18,6 +18,9 @@ class TimerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        for i in Tracks{
+            print("\(i.getMin())")
+        }
     }
     
     @IBAction func onPlayPause(_ sender: Any) {

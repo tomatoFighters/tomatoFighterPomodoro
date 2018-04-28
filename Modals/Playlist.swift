@@ -11,18 +11,31 @@ import Foundation
 class Playlist {
     class Track {
         var tLabel: String
-//        var timer = Timer()
-//
-        init(label l:String){
-            tLabel=l
-        }
+        var min: Int
+        var sec: Int
         
+        init(label l:String){
+            tLabel = l
+            min = 0
+            sec = 0
+        }
         func getTrackLabel() -> String{
             return tLabel
         }
-        
         func setTrackLable(label l: String){
             self.tLabel = l
+        }
+        func getMin() -> Int{
+            return min
+        }
+        func setMin(min t: Int){
+            self.min = t
+        }
+        func getSec() -> Int{
+            return sec
+        }
+        func setSec(sec t: Int){
+            self.sec = t
         }
     }
     
@@ -55,7 +68,9 @@ class Playlist {
         return label
     }
     
-    func setLable(label l: String){
+    func setLabel(label l: String){
         self.label = l
     }
+    
+    
 }
