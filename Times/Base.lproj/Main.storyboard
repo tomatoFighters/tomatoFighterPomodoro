@@ -10,6 +10,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="GurmukhiMN.ttc">
+            <string>GurmukhiMN</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Playlist-->
         <scene sceneID="tne-QT-ifu">
@@ -193,27 +198,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfp-lO-KXv">
-                                <rect key="frame" x="146" y="143" width="97" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfp-lO-KXv">
+                                <rect key="frame" x="114" y="134" width="147" height="65"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="54"/>
+                                <color key="textColor" red="0.020583603619669977" green="0.072531579372551544" blue="0.66074218750000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1VE-QO-lmM">
-                                <rect key="frame" x="172" y="200" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Play"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1VE-QO-lmM">
+                                <rect key="frame" x="145" y="207" width="85" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="air-Lu-2S6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="17"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" red="0.0" green="0.71372549019999998" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="onPlayPause:" destination="Ce2-BS-1sF" eventType="touchUpInside" id="rEu-cT-jbc"/>
+                                    <action selector="onPlay:" destination="Ce2-BS-1sF" eventType="touchUpInside" id="rEu-cT-jbc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Awn-Pw-mKs">
+                                <rect key="frame" x="145" y="207" width="85" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="pLM-O2-dCa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="17"/>
+                                <state key="normal" title="Pause">
+                                    <color key="titleColor" red="0.37091858674741152" green="0.017223420484778977" blue="0.66074218750000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPause:" destination="Ce2-BS-1sF" eventType="touchUpInside" id="M5Z-0S-NXx"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZgX-F5-emC">
+                                <rect key="frame" x="310" y="79" width="51" height="31"/>
+                            </switch>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZgX-F5-emC" firstAttribute="top" secondItem="aKm-jO-WgR" secondAttribute="top" constant="15" id="Gdd-dX-3Xa"/>
+                            <constraint firstItem="aKm-jO-WgR" firstAttribute="trailing" secondItem="ZgX-F5-emC" secondAttribute="trailing" constant="16" id="MHm-tv-w4A"/>
+                            <constraint firstItem="Awn-Pw-mKs" firstAttribute="top" secondItem="kfp-lO-KXv" secondAttribute="bottom" constant="8" id="YAR-dv-A4A"/>
+                            <constraint firstItem="1VE-QO-lmM" firstAttribute="centerX" secondItem="a01-c6-OXO" secondAttribute="centerX" id="cPh-r2-FoY"/>
+                            <constraint firstItem="kfp-lO-KXv" firstAttribute="top" secondItem="aKm-jO-WgR" secondAttribute="top" constant="70" id="eBL-lf-2LC"/>
+                            <constraint firstItem="1VE-QO-lmM" firstAttribute="top" secondItem="kfp-lO-KXv" secondAttribute="bottom" constant="8" id="fN2-BL-cqK"/>
+                            <constraint firstItem="kfp-lO-KXv" firstAttribute="leading" secondItem="aKm-jO-WgR" secondAttribute="leading" constant="114" id="faS-2g-o0j"/>
+                            <constraint firstItem="Awn-Pw-mKs" firstAttribute="centerX" secondItem="a01-c6-OXO" secondAttribute="centerX" id="nAM-EZ-XJl"/>
+                            <constraint firstItem="aKm-jO-WgR" firstAttribute="trailing" secondItem="kfp-lO-KXv" secondAttribute="trailing" constant="114" id="x6G-bu-qtH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="aKm-jO-WgR"/>
                     </view>
                     <connections>
-                        <outlet property="playPauseButton" destination="1VE-QO-lmM" id="sPd-Vb-tp4"/>
+                        <outlet property="pauseButton" destination="Awn-Pw-mKs" id="aGL-v3-nqQ"/>
+                        <outlet property="playButton" destination="1VE-QO-lmM" id="sPd-Vb-tp4"/>
+                        <outlet property="runWithCon" destination="ZgX-F5-emC" id="2OE-Ep-sFB"/>
                         <outlet property="timerLabel" destination="kfp-lO-KXv" id="aIS-QZ-t18"/>
                     </connections>
                 </viewController>

@@ -84,9 +84,40 @@ class TracksViewController: UIViewController, UITableViewDataSource, UITableView
     // Navigation: passing Data to Timer page
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
-        let trackController = segue.destination as! TimerViewController
-        trackController.Tracks = playList?.getTracks()
-    }
 
+        var tempTracks = playList?.getTracks()
+        var count = 0
+        for tr in tempTracks!{
+            if tr.getMin() == 0 && tr.getSec() == 0 {
+                tempTracks?.remove(at: count)
+            } else {
+                count += 1
+            }
+        }
+
+        if tempTracks?.count != 0 {
+            let trackController = segue.destination as! TimerViewController
+            trackController.Tracks = tempTracks
+        }
+
+    }
+    
+//    override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool {
+//        var tempTracks = playList?.getTracks()
+//            var count = 0
+//            for tr in tempTracks!{
+//                if tr.getMin() == 0 && tr.getSec() == 0 {
+//                    tempTracks?.remove(at: count)
+//                } else {
+//                    count += 1
+//                }
+//            }
+//
+//            if tempTracks?.count == 0 {
+//               return false
+//            }else{
+//                let trackController = segue.destination as! TimerViewController
+//                trackController.Tracks = tempTracks
+//            }
+//    }
 }

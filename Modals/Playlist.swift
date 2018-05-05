@@ -22,7 +22,7 @@ class Playlist {
         func getTrackLabel() -> String{
             return tLabel
         }
-        func setTrackLable(label l: String){
+        func setTrackLabel(label l: String){
             self.tLabel = l
         }
         func getMin() -> Int{
