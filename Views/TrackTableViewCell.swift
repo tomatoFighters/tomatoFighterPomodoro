@@ -39,19 +39,11 @@ class TrackTableViewCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDele
     }
     @objc func donePressed(sender:UIBarButtonItem){
         //print("done was pressed")//DEBUG
-        if timerValueArray[0] < 10 && timerValueArray[1] < 10  {
-            trackTimer.text = "0\(timerValueArray[0]):0\(timerValueArray[1])"
-        }
-        else if timerValueArray[1] < 10 {
-            trackTimer.text = "\(timerValueArray[0]):0\(timerValueArray[1])"
-        }
-        else {
-            trackTimer.text = "\(timerValueArray[0]):\(timerValueArray[1])"
-        }
         track?.setMin(min: timerValueArray[0])
         track?.setSec(sec: timerValueArray[1])
         
-      print(track?.min)
+        trackTimer.text = track?.getTrackTimerLabel()
+        print("Track: \(track?.tLabel)Min: \(track?.min) Sec:\(track?.sec)")
         self.endEditing(true)
     }
     
@@ -112,7 +104,7 @@ class TrackTableViewCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDele
         var newText: NSString = textField.text! as NSString
         newText = newText.replacingCharacters(in: range, with: string) as NSString
         print(newText)
-        track?.setTrackLable(label: newText as String)
+        track?.setTrackLabel(label: newText as String)
         return true
     }
     
