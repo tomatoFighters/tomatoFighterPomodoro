@@ -17,6 +17,7 @@ class TracksViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         self.title = playList?.getLabel()
         self.trackTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        
 
         trackTableView.rowHeight = UITableViewAutomaticDimension
         let h = trackTableView.bounds.height
@@ -43,6 +44,7 @@ class TracksViewController: UIViewController, UITableViewDataSource, UITableView
         let track = playList?.getTrack(id: indexPath.row)
         trackCell.trackLabel.text = track?.getTrackLabel()
         trackCell.track = playList?.getTrack(id: indexPath.row)
+        trackCell.trackTimer.text = track?.getTrackTimerLabel()
         
         return trackCell
     }

@@ -37,6 +37,19 @@ class Playlist {
         func setSec(sec t: Int){
             self.sec = t
         }
+        func getTrackTimerLabel() -> String {
+            var label = ""
+            if self.min < 10 && self.sec < 10  {
+                label = "0\(self.min):0\(self.sec)"
+            }
+            else if self.min < 10 {
+               label = "0\(self.min):\(self.sec)"
+            }
+            else {
+                label = "\(self.min):\(self.sec)"
+            }
+            return label
+        }
     }
     
     var label: String
