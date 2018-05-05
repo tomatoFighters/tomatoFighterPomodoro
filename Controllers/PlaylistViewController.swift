@@ -18,6 +18,7 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableView.reloadData()
+        self.parent?.view.backgroundColor = UIColor .white
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
