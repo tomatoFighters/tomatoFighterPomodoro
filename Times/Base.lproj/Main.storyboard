@@ -183,7 +183,7 @@
                     </view>
                     <connections>
                         <outlet property="trackTableView" destination="bCX-kU-SCR" id="51e-8j-uPz"/>
-                        <segue destination="Ce2-BS-1sF" kind="show" identifier="toTimer" id="9ur-0R-zCo"/>
+                        <segue destination="Ce2-BS-1sF" kind="show" identifier="toTimer" id="hlJ-oA-Nm5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMR-tm-uPR" userLabel="First Responder" sceneMemberID="firstResponder"/>
