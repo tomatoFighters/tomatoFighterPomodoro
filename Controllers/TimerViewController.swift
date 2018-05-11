@@ -11,7 +11,7 @@ import UIKit
 class TimerViewController: UIViewController {
     @IBOutlet weak var runWithCon: UISwitch!
     @IBOutlet weak var pauseButton: UIButton!
-    var Tracks: [Playlist.Track]!
+    var Tracks: [Track]!
     var Stack:[StackView] = []
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!

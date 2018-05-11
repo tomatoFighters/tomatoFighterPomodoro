@@ -12,7 +12,7 @@ class TrackTableViewCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDele
     @IBOutlet weak var trackLabel: UITextField!
     @IBOutlet weak var trackTimer: UITextField!
     
-    var track:Playlist.Track?
+    var track:Track?
     let picker = UIPickerView()
     let minutes = Array(0...59)
     let seconds = Array(0...59)
