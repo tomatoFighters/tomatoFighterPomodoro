@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TimerViewController: UIViewController {
     @IBOutlet weak var runWithCon: UISwitch!
@@ -20,6 +21,7 @@ class TimerViewController: UIViewController {
     var isTimerRunning = false
     var resumeTapped = false
     var goRight = true
+    var player: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +54,8 @@ class TimerViewController: UIViewController {
     }
     
     @IBAction func onPlay(_ sender: Any) {
+        playSound(soundName: "startingPistol")
+        
         seconds = Tracks[0].getSec() + Tracks[0].getMin()*60
         runTimer()
         
@@ -75,6 +79,7 @@ class TimerViewController: UIViewController {
     @objc func updateTimer() {
         if seconds < 1 {
             if Tracks.count <= 1{
+                playSound(soundName: "bell")
                 timer.invalidate()
                 pauseButton.setTitle("Done!",for: .normal)
                 pauseButton.isEnabled = false
@@ -82,6 +87,7 @@ class TimerViewController: UIViewController {
                     removeView()
                 }
             } else {
+                playSound(soundName: "bell")
                 removeView()
                 Tracks.remove(at: 0)
                 seconds = Tracks[0].getSec() + Tracks[0].getMin()*60
@@ -117,6 +123,7 @@ class TimerViewController: UIViewController {
             print(Tracks.count)
             if Tracks.count > 1{
                 removeView()
+                playSound(soundName: "bell")
                 playButton.isHidden=false
                 pauseButton.isHidden=true
                 Tracks.remove(at: 0)
@@ -125,6 +132,7 @@ class TimerViewController: UIViewController {
                 if Tracks.count == 1{
                     removeView()
                 }
+                playSound(soundName: "bell")
                 pauseButton.setTitle("Done!",for: .normal)
                 pauseButton.isEnabled = false
             }
@@ -148,5 +156,30 @@ class TimerViewController: UIViewController {
         let seconds = Int(time) % 60
         return String(format:"%02i:%02i", minutes, seconds)
     }
+    
+    ///////////////////////////////////// Below Player Setup
+    func playSound(soundName: String) {
+        print("playSound() was called")
+        
+        let sound = NSDataAsset(name: soundName) //sound is an optional NSDataAsset
+        
+        if sound == nil {
+            print("error finding sound asset")
+            return  // This gets out of the function
+        }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {                                        // setting up numerous do, try, catch blocks allows us to specifically what fails.
+            print("error setting up sound playback")
+        }
+        do {
+            try player = AVAudioPlayer(data: sound!.data)
+            player!.play()
+        }catch {
+            print("eror in the sound playback")
+        }
+    }
+    ///////////////////////////////////// Above Player Setup
 
 }
