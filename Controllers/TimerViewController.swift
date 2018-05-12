@@ -19,6 +19,7 @@ class TimerViewController: UIViewController {
     var timer = Timer()
     var isTimerRunning = false
     var resumeTapped = false
+    var goRight = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,8 +96,16 @@ class TimerViewController: UIViewController {
     func removeView(){
         UIView.animate(withDuration: 0.5, delay: 0.4, options: [],
                        animations: {
-                        let newWidth:CGFloat = 700
-                        self.Stack[0].frame.origin.x = self.Stack[0].frame.origin.x + 700
+                        let newY:CGFloat = 900
+                        if self.goRight == true {
+                            self.Stack[0].frame.origin.x = self.Stack[0].frame.origin.x + newY
+                            self.goRight = false
+                            self.Stack.remove(at: 0)
+                        } else {
+                            self.Stack[0].frame.origin.x = self.Stack[0].frame.origin.x - newY
+                            self.goRight = true
+                            self.Stack.remove(at: 0)
+                        }
         },
                        completion: nil
         )
