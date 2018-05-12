@@ -13,7 +13,7 @@ class TracksViewController: UIViewController, UITableViewDataSource, UITableView
     
     var playList: Playlist?
     var trackCell: TrackTableViewCell!
-    var tempTracks:[Playlist.Track]?
+    var tempTracks:[Track]?
     
     override func viewDidLoad() {
         self.title = playList?.getLabel()
