@@ -7,10 +7,11 @@
 //
 
 import UIKit
+var playLists: [Playlist] = []
 
 class PlaylistViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
-    var playLists: [Playlist] = [Playlist(label: "To Do")]
+    //var playLists: [Playlist] = []
     var cell: PlaylistTableViewCell!
     
     @IBOutlet weak var tableView: UITableView!
@@ -28,6 +29,14 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
+        
+       
+        if let savedPlaylists = loadPlaylists() {
+            playLists += savedPlaylists
+        }
+        if playLists.count == 0 {
+            playLists.append(Playlist(label:"To Do"))
+        }
         super.viewDidLoad()
     }
     
@@ -36,7 +45,8 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
         let newPlayList = Playlist(label: "New To Do")
         playLists.append(newPlayList)
         self.tableView.reloadData()
-        print (playLists.count)
+        print ("playList.count is \(playLists.count)")//debug
+        savePlayLists()
     }
     
     
@@ -54,8 +64,10 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
+    //MARK: Preform Segue
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         UIApplication.shared.sendAction("resignFirstResponder", to:nil, from:nil, for:nil)
+        savePlayLists()
         self.performSegue(withIdentifier: "ShowTruck", sender: self)
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -63,7 +75,7 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
         if editingStyle == .delete {
             playLists.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            
+            savePlayLists()
         } else if editingStyle == .insert {
             // Not used in our example, but if you were adding a new row, this is where you would do it.
         }
@@ -74,7 +86,7 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let controller = segue.destination as! TracksViewController
         let row = tableView.indexPathForSelectedRow!.row
-        let thePlaylist = self.playLists[row]
+        let thePlaylist = playLists[row]
         
         controller.playList = thePlaylist
         if let selectionIndexPath = self.tableView.indexPathForSelectedRow {
@@ -101,5 +113,24 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.contentInset = contentInsets
         tableView.scrollIndicatorInsets = contentInsets
     }
+    
+}
+extension UIViewController{
+    //MARK save function
+    func savePlayLists() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(playLists, toFile: Playlist.ArchiveURL.path)
+        if isSuccessfulSave {
+            print("Playlists successfully saved.")//debug
+            print(playLists)//debug
+        } else {
+            print("Failed to save Playlist...")//debug
+        }
+    }
+    func loadPlaylists() -> [Playlist]?  {
+        print("in load function")
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Playlist.ArchiveURL.path) as? [Playlist]
+    }
+    
+    
 }
 

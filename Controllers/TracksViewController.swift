@@ -13,7 +13,7 @@ class TracksViewController: UIViewController, UITableViewDataSource, UITableView
     
     var playList: Playlist?
     var trackCell: TrackTableViewCell!
-    var tempTracks:[Playlist.Track]?
+    var tempTracks:[Track]?
     
     override func viewDidLoad() {
         self.title = playList?.getLabel()
@@ -63,7 +63,9 @@ class TracksViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         if tempTracks!.count > 0{
+            savePlayLists()
             performSegue(withIdentifier: "toTimer", sender: sender)
+            
         }
     }
     
