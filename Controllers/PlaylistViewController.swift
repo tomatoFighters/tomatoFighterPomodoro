@@ -7,10 +7,11 @@
 //
 
 import UIKit
+var playLists: [Playlist] = []
 
 class PlaylistViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
-    var playLists: [Playlist] = []
+    //var playLists: [Playlist] = []
     var cell: PlaylistTableViewCell!
     
     @IBOutlet weak var tableView: UITableView!
@@ -85,7 +86,7 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let controller = segue.destination as! TracksViewController
         let row = tableView.indexPathForSelectedRow!.row
-        let thePlaylist = self.playLists[row]
+        let thePlaylist = playLists[row]
         
         controller.playList = thePlaylist
         if let selectionIndexPath = self.tableView.indexPathForSelectedRow {
@@ -113,6 +114,8 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.scrollIndicatorInsets = contentInsets
     }
     
+}
+extension UIViewController{
     //MARK save function
     func savePlayLists() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(playLists, toFile: Playlist.ArchiveURL.path)
@@ -123,10 +126,11 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
             print("Failed to save Playlist...")//debug
         }
     }
-    private func loadPlaylists() -> [Playlist]?  {
+    func loadPlaylists() -> [Playlist]?  {
         print("in load function")
         return NSKeyedUnarchiver.unarchiveObject(withFile: Playlist.ArchiveURL.path) as? [Playlist]
     }
+    
     
 }
 

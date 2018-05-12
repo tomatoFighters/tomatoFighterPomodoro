@@ -63,7 +63,9 @@ class TracksViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         if tempTracks!.count > 0{
+            savePlayLists()
             performSegue(withIdentifier: "toTimer", sender: sender)
+            
         }
     }
     
